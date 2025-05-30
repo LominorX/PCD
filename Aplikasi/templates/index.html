@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Klasifikasi Sampah</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Klasifikasi Gambar Sampah</h1>
+        
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Klasifikasikan</button>
+        </form>
+
+        {% if label %}
+            <div class="result">
+                <h2>Hasil Prediksi: 
+                    <span style="color: green;">{{ label|capitalize }} ({{ confidence }}%)</span>
+                </h2>
+                <img src="{{ image_path }}" alt="Gambar Sampah">
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
